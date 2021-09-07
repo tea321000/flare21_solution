@@ -31,10 +31,10 @@ The solution for this challenge is based on the nnUNet repository, thanks to Fab
 
 At present, my solution can only be used to train the 3d network. The 2d network has not been completely modified yet. If you have any intentions, you can ask questions in the issue or send an email to me. The training instructions of the 3d network is the same as the original [nnUNet](https://github.com/tea321000/nnUNet/tree/flare_21#3d-full-resolution-u-net), but the Trainer needs to be changed to `nnUNetTrainerV2_flare`:
 
-```bash
-#My solution in challenge uses lowres network, but fullres network can also be used
-nnUNet_train 3d_lowres nnUNetTrainerV2_flare TaskXXX_MYTASK FOLD --npz
-```
+    ```bash
+    #My solution in challenge uses lowres network, but fullres network can also be used
+    nnUNet_train 3d_lowres nnUNetTrainerV2_flare TaskXXX_MYTASK FOLD --npz
+    ```
 
 ## Inference
 
@@ -48,8 +48,8 @@ nnUNet_train 3d_lowres nnUNetTrainerV2_flare TaskXXX_MYTASK FOLD --npz
 
 2. Create `inputs` folder under `flare21_solution` and put the sample to be predicted into it, execute predict.sh:
 
-```bash
-bash predict.sh
-```
+    ```bash
+    bash predict.sh
+    ```
 
 The predictions are saved in the `outputs` folder by default, and the input and output paths can be changed by modifying the script.
