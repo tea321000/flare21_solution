@@ -17,6 +17,8 @@ The solution for this challenge is based on the nnUNet repository, thanks to Fab
 2. Follow the installation instructions of [my forked repository](https://github.com/tea321000/nnUNet/tree/flare_21#installation) to install the modified version of nnUNet. Ensure that the relevant environment variables have been set similar to the following commands:
 
     ```bash
+    cd nnUNet
+    pip install -e .
     # you can write environment variables into .bashrc
     export nnUNet_raw_data_base="/media/fabian/nnUNet_raw"
     export nnUNet_preprocessed="/media/fabian/nnUNet_preprocessed"
