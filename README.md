@@ -10,7 +10,7 @@ We made three major modifications on top of the original nnUNet:
 
 ## Installation
 
-### from source(recommend)
+### from source (recommend)
 
 1. Clone the directory and its submodule (nnUNet):
 
