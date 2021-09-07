@@ -1,11 +1,8 @@
-# flare21_solution
-my solution for flare21 challenge https://flare.grand-challenge.org/
-
 # flare_21
 
 The solution for this challenge is based on the nnUNet repository, thanks to Fabian’s great work!
 
-# Installation
+## Installation
 
 1. Clone the directory and its submodule (nnUNet):
 
@@ -30,7 +27,7 @@ echo $nnUNet_preprocessed
 echo $RESULTS_FOLDER
 ```
 
-# Training
+## Training
 
 At present, my solution can only be used to train the 3d network. The 2d network has not been completely modified yet. If you have any intentions, you can ask questions in the issue or send an email to me. The training instructions of the 3d network is the same as the original [nnUNet](https://github.com/tea321000/nnUNet/tree/flare_21#3d-full-resolution-u-net), but the Trainer needs to be changed to `nnUNetTrainerV2_flare`:
 
@@ -39,7 +36,7 @@ At present, my solution can only be used to train the 3d network. The 2d network
 nnUNet_train 3d_lowres nnUNetTrainerV2_flare TaskXXX_MYTASK FOLD --npz
 ```
 
-# Inference
+## Inference
 
 1. Download the trained model from the [download.sh](https://github.com/tea321000/flare21_solution/blob/main/download.sh) script or the [Google Drive](https://drive.google.com/file/d/1YW8MsLaYUr6lhfpf_LL6kTelPiuJRhq9/view) link(task id is 500):
 
