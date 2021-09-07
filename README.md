@@ -7,7 +7,7 @@ The solution for this challenge is based on the nnUNet repository. Give thanks t
 1. Clone the directory and its submodule (nnUNet):
 
     ```bash
-    git clone --recursive <https://github.com/tea321000/flare21_solution>
+    git clone --recursive https://github.com/tea321000/flare21_solution
     cd flare21_solution
     # if you are updating an existing checkout
     git submodule sync
