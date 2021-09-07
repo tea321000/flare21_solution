@@ -17,6 +17,8 @@ The solution for this challenge is based on the nnUNet repository. Give thanks t
 2. Follow the installation instructions of [my forked repository](https://github.com/tea321000/nnUNet/tree/flare_21#installation) to install the modified version of nnUNet. Ensure that the relevant environment variables have been set similar to the following commands:
 
     ```bash
+    # some APIs in the recently updated version of batchgenerators have changed, so it is recommended to use the old version
+    pip install batchgenerators==0.21
     cd nnUNet
     pip install -e .
     # you can write environment variables into .bashrc
