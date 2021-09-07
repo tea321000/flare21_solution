@@ -2,7 +2,15 @@
 
 The solution for this challenge is based on the nnUNet repository. Give thanks to Fabian’s great work!
 
+We made three major modifications on top of the original nnUNet:
+
+1. In the inference stage, we only used the two samples with the largest flipping difference as test time augmentation (TTA).
+2. In the deep supervision block, we only used the decoder output of the last three layers for weighted average.
+3. To reduce performance degradation caused by network simplification, we referred to the idea of OHEM and used Top-k loss in cross-entropy to supervise the voxels with the largest difference, which would help maintain the performance as much as possible under the simplified structure.
+
 ## Installation
+
+### from source(recommend)
 
 1. Clone the directory and its submodule (nnUNet):
 
@@ -31,12 +39,21 @@ The solution for this challenge is based on the nnUNet repository. Give thanks t
     echo $RESULTS_FOLDER
     ```
 
+### docker
+
+We also provide [docker images](https://drive.google.com/file/d/1a-atCB_BZkeyzrho2ediEtLzt6rk6YT4/view) for the competition, but this method of installation is not convenient for modification, so it is recommended to use it only for inference. You can use it with the following instructions:
+
+```bash
+docker image load < ttime_flare_final.tar.gz
+docker container run --gpus "all" --name ttime --rm -v $PWD/inputs/:/workspace/inputs/ -v $PWD/outputs/:/workspace/outputs/ teamname:latest /bin/bash -c "sh predict.sh"
+```
+
 ## Training
 
 At present, the 2d network has not been completely modified yet, so my solution can only be used to train the 3d network. If you have any ideas or questions, you can post them in the issue or send an email to me. The training instructions of the 3d network is the same as the original [nnUNet](https://github.com/tea321000/nnUNet/tree/flare_21#3d-full-resolution-u-net), but the Trainer needs to be changed to `nnUNetTrainerV2_flare`:
 
 ```bash
-#My solution in challenge uses lowres network, but fullres network can also be used
+# my solution in challenge uses lowres network, but fullres network can also be used
 nnUNet_train 3d_lowres nnUNetTrainerV2_flare TaskXXX_MYTASK FOLD --npz
 ```
 
@@ -48,9 +65,9 @@ nnUNet_train 3d_lowres nnUNetTrainerV2_flare TaskXXX_MYTASK FOLD --npz
     bash download.sh
     ```
 
-    If you download from Google Drive link, you need to put the compressed file into the manually created `trained_weight` folder in `flare21_solution` folder and run [download.sh](http://download.sh/).
+    If you download from Google Drive link, you need to put the compressed file into the manually created `trained_weight` folder in `flare21_solution` folder and run [download.sh](https://github.com/tea321000/flare21_solution/blob/main/download.sh).
 
-2. Create `inputs` folder under `flare21_solution` , put the samples to be predicted into the folder, and run [predict.sh](http://predict.sh/):
+2. Create `inputs` folder under `flare21_solution` , put the samples to be predicted into the folder, and run [predict.sh](https://github.com/tea321000/flare21_solution/blob/main/predict.sh):
 
     ```bash
     bash predict.sh
