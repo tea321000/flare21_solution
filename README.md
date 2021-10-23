@@ -8,6 +8,19 @@ We made three major modifications on top of the original nnUNet:
 2. In the deep supervision block, we only used the decoder output of the last three layers for weighted average.
 3. To reduce performance degradation caused by network simplification, we referred to the idea of OHEM and used Top-k loss in cross-entropy to supervise the voxels with the largest difference, which would help maintain the performance as much as possible under the simplified structure.
 
+## Update 2021.10.23
+
+I have retrained and uploaded the docker file based on the [Abdomen1KCT-fullySupervised](https://abdomenct-1k-fully-supervised-learning.grand-challenge.org/) dataset, which can be obtained through [Docker Hub](https://hub.docker.com/r/ttime/abdomen1k) or [Google Netdisk](https://drive.google.com/file/d/1KrFi6rCQDsce5dWZFS_xaLryOZRCw1iQ/view?usp=sharing). The installation method can refer to the docker chapter below but change the instructions to:
+
+```bash
+# (Optional) download from Docker Hub
+docker pull ttime/abdomen1k
+#subtask 1
+docker container run --gpus "all" --name ttime_abdomen1k --rm -v $PWD/inputs/:/workspace/inputs/ -v $PWD/outputs/:/workspace/outputs/ ttime_abdomen1k:latest /bin/bash -c "sh predict.sh 1"
+#subtask 2
+docker container run --gpus "all" --name ttime_abdomen1k --rm -v $PWD/inputs/:/workspace/inputs/ -v $PWD/outputs/:/workspace/outputs/ ttime_abdomen1k:latest /bin/bash -c "sh predict.sh 2"
+```
+
 ## Installation
 
 ### from source (recommend)
